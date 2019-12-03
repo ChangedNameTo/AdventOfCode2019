@@ -1,5 +1,7 @@
-# f = open('3/input.txt')
-f = open('3/test.txt')
+f = open('3/input.txt')
+# f = open('3/test.txt')
+# f = open('3/test2.txt')
+# f = open('3/test3.txt')
 
 lines = f.read().splitlines()
 
@@ -16,19 +18,19 @@ for line in lines:
         magnitude = int(instruction[1:])
 
         if direction == 'R':
-            for x in range(0,magnitude + 1):
+            for x in range(0,magnitude):
                 curr_x += 1
                 path.append((curr_x,curr_y))
         elif direction == 'U':
-            for x in range(0,magnitude + 1):
+            for x in range(0,magnitude):
                 curr_y += 1
                 path.append((curr_x,curr_y))
         elif direction == 'L':
-            for x in range(0,magnitude + 1):
+            for x in range(0,magnitude):
                 curr_x -= 1
                 path.append((curr_x,curr_y))
         elif direction == 'D':
-            for x in range(0,magnitude + 1):
+            for x in range(0,magnitude):
                 curr_y -= 1
                 path.append((curr_x,curr_y))
         else:
@@ -54,8 +56,13 @@ for insersection in intersections:
 path_1 = paths[0]
 path_2 = paths[1]
 
-path_1_steps = []
-path_2_steps = []
+step_counts = []
+int_count = 1
+
 for intersection in intersections:
-    path_1_steps.append(path_1.index(intersection))
-    path_2_steps.append(path_2.index(intersection))
+    step_1 = (path_1.index(intersection))
+    step_2 = (path_2.index(intersection))
+    # Accounts for (0,0)
+    step_counts.append(step_1 + step_2 + 2)
+
+print(min(step_counts))
